@@ -3,13 +3,15 @@ import { setAlert } from './alert';
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
     AUTH_ERROR,
     USER_LOADED,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
 // Load User
-export const loadUser = (payload) => async (dispatch) => {
+export const loadUser = () => async (dispatch) => {
     // Put the token in default headers
     if (localStorage.token) {
         setAuthToken(localStorage.token);
@@ -45,11 +47,14 @@ export const register = ({ name, email, password }) => async (dispatch) => {
         // Attempt to register the user
         const res = await axios.post('/api/users', body, config);
 
-        // Dispatch user
+        // Dispatch user token
         dispatch({
             type: REGISTER_SUCCESS,
             payload: res.data,
         });
+
+        // Dispatch load user
+        dispatch(loadUser());
     } catch (err) {
         // Create alerts for any errors
         const errors = err.response.data.errors;
@@ -60,6 +65,42 @@ export const register = ({ name, email, password }) => async (dispatch) => {
         // Dispatch failed
         dispatch({
             type: REGISTER_FAIL,
+        });
+    }
+};
+
+// Log In User
+export const login = ({ email, password }) => async (dispatch) => {
+    // Create our request headers and body
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+    const body = JSON.stringify({ email, password });
+
+    try {
+        // Attempt to register the user
+        const res = await axios.post('/api/auth', body, config);
+
+        // Dispatch user token
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: res.data,
+        });
+
+        // Dispatch load user
+        dispatch(loadUser());
+    } catch (err) {
+        // Create alerts for any errors
+        const errors = err.response.data.errors;
+        if (errors) {
+            errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+        }
+
+        // Dispatch failed
+        dispatch({
+            type: LOGIN_FAIL,
         });
     }
 };
