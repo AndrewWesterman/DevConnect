@@ -2,6 +2,8 @@ import React, { useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
+import Experience from './profile/Experience';
+import Education from './profile/Education';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -27,6 +29,8 @@ const Dashboard = ({
             {profile !== null ? (
                 <Fragment>
                     <DashboardActions />
+                    <Experience experience={profile.experience} />
+                    <Education education={profile.education} />
                 </Fragment>
             ) : (
                 <Fragment>
