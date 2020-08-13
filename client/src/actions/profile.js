@@ -103,6 +103,33 @@ export const addExperience = (formData, history) => async (dispatch) => {
     }
 };
 
+// Delete experience from profile
+export const deleteExperience = (exp_id) => async (dispatch) => {
+    try {
+        const res = await axios.delete(`/api/profile/experience/${exp_id}`);
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data,
+        });
+
+        dispatch(setAlert('Experience deleted', 'success'));
+    } catch (err) {
+        // Create alerts for any errors
+        const errors = err.response.data.errors;
+        if (errors) {
+            errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+        }
+
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: {
+                msg: err.response.statusText,
+                status: err.response.status,
+            },
+        });
+    }
+};
+
 // Add education to profile
 export const addEducation = (formData, history) => async (dispatch) => {
     try {
@@ -121,6 +148,33 @@ export const addEducation = (formData, history) => async (dispatch) => {
         dispatch(setAlert('Education added', 'success'));
 
         history.push('/dashboard');
+    } catch (err) {
+        // Create alerts for any errors
+        const errors = err.response.data.errors;
+        if (errors) {
+            errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+        }
+
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: {
+                msg: err.response.statusText,
+                status: err.response.status,
+            },
+        });
+    }
+};
+
+// Delete education from profile
+export const deleteEducation = (edu_id) => async (dispatch) => {
+    try {
+        const res = await axios.delete(`/api/profile/education/${edu_id}`);
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data,
+        });
+
+        dispatch(setAlert('Education deleted', 'success'));
     } catch (err) {
         // Create alerts for any errors
         const errors = err.response.data.errors;

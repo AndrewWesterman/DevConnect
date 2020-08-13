@@ -233,7 +233,7 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
 
         // Remove the experience with matching id
         profile.experience = profile.experience.filter(
-            (e) => e.id !== req.params.exp_id
+            (exp) => exp.id !== req.params.exp_id
         );
         await profile.save();
 
