@@ -36,8 +36,6 @@ const Dashboard = ({
             )}
         </Fragment>
     );
-
-    return <div>WELCOME TO THE DASHBOARD</div>;
 };
 
 Dashboard.propTypes = {
