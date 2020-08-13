@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
 
 import PropTypes from 'prop-types';
