@@ -34,8 +34,8 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 repos: payload,
-                loading = false
-            }
+                loading: false,
+            };
         case PROFILE_ERROR:
             return {
                 ...state,
