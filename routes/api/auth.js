@@ -9,7 +9,7 @@ const auth = require('../../middleware/auth');
 const User = require('../../models/User');
 
 // @route   GET api/auth
-// @desc    Test Route
+// @desc    Get user associated active token
 // @access  Public
 router.get('/', auth, async (req, res) => {
     try {
@@ -45,7 +45,7 @@ router.post(
 
         try {
             // See if user exists
-            let user = await User.findOne();
+            let user = await User.findOne({ email });
             if (!user) returnInvalid();
 
             // Check is password is match
