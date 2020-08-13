@@ -30,8 +30,6 @@ const ExperienceForm = ({ addExperience, history }) => {
         description,
     } = formData;
 
-    const [showToDate, toggleToDate] = useState(false);
-
     // Prop change handler
     const onChange = (e) =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -50,13 +48,7 @@ const ExperienceForm = ({ addExperience, history }) => {
                 developer/programming positions that you have had in the past
             </p>
             <small>* = required field</small>
-            <form
-                className='form'
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    addExperience(formData, history);
-                }}
-            >
+            <form className='form' onSubmit={onSubmit}>
                 <div className='form-group'>
                     <input
                         type='text'
