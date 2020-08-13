@@ -17,13 +17,13 @@ router.get('/me', auth, async (req, res) => {
             user: req.user.id,
         }).populate('user', ['name', 'avatar']);
 
-        console.log(profile);
-
+        // Check if profile exists
         if (!profile) {
             return res
                 .status(400)
                 .json({ errors: [{ msg: 'No profile for active user' }] });
         }
+
         return res.json(profile);
     } catch (err) {
         console.error(err.message);
