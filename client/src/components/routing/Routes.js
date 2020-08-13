@@ -6,6 +6,7 @@ import Alert from '../layout/Alert';
 import Dashboard from '../dashboard/Dashboard';
 import ProfileForm from '../profile-forms/ProfileForm';
 import ExperienceForm from '../profile-forms/ExperienceForm';
+import EducationForm from '../profile-forms/EducationForm';
 import PrivateRoute from './PrivateRoute';
 
 const Routes = () => {
@@ -30,6 +31,11 @@ const Routes = () => {
                     exact
                     path='/add-experience'
                     component={ExperienceForm}
+                />
+                <PrivateRoute
+                    exact
+                    path='/add-education'
+                    component={EducationForm}
                 />
             </Switch>
         </section>
