@@ -2,8 +2,8 @@ import React, { useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
-import Experience from './profile/Experience';
-import Education from './profile/Education';
+import Experience from './Experience';
+import Education from './Education';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
