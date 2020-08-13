@@ -46,11 +46,11 @@ router.post(
         try {
             // See if user exists
             let user = await User.findOne({ email });
-            if (!user) returnInvalid();
+            if (!user) return returnInvalid();
 
             // Check is password is match
             const isMatch = await bcrypt.compare(password, user.password);
-            if (!isMatch) returnInvalid();
+            if (!isMatch) return returnInvalid();
 
             // Return jwt
             const payload = {
