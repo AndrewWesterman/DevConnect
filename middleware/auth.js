@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const { restart } = require('nodemon');
 
 module.exports = (req, res, next) => {
     // Get token from header
