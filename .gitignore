@@ -1,4 +1,5 @@
 /node_modules/
 /config/default.json
+/config/production.json
 /devconnector_html_theme
 /client/node_modules
